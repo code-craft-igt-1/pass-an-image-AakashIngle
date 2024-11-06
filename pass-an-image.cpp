@@ -2,11 +2,16 @@
 #include "brightener.h"
 
 int main() {
-    Image image;
-    image.rows = 512;
-    image.columns = 512;
-	std::cout << "Brightening a 512 x 512 image\n";
-    ImageBrightener brightener(image);
-    int attenuatedCount = brightener.BrightenWholeImage();
-    std::cout << "Attenuated " << attenuatedCount << " pixels\n";
+    try {
+        Image image(512, 512);
+        //std::cout << "Brightening a " << image.rows << " x " << image.columns << " image\n";
+        ImageBrightener brightener(image);
+        int attenuatedCount = brightener.BrightenWholeImage();
+        std::cout << "Attenuated " << attenuatedCount << " pixels\n";
+    }
+    catch (const std::exception& e) {
+        std::cout << "Error: " << e.what() << "\n";  // Handle invalid dimensions
+    }
+
+    return 0;
 }
